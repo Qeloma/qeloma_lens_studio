@@ -14,6 +14,10 @@ deterministic rule-based fallbacks that mean it never hard-fails.
 running with real Gemini AI and Supabase-backed auth + persistence. See
 [DEPLOYMENT.md](./DEPLOYMENT.md) to deploy your own instance.
 
+For the current local build-agent documentation, including the Python
+FastAPI agent setup and local run instructions, see
+[BUILD_AGENT_GUIDE.md](./BUILD_AGENT_GUIDE.md).
+
 ---
 
 ## Features
@@ -43,7 +47,7 @@ running with real Gemini AI and Supabase-backed auth + persistence. See
 | --------- | ------------------------------------------------------------ |
 | Frontend  | React 19 + Vite 6 + Tailwind CSS 4                           |
 | Backend   | Express 4 (Node), deployed as a Vercel serverless function   |
-| AI        | Google Gemini (`@google/genai`), with rule-based fallbacks |
+| AI        | Google Gemini (`@google/genai`), with rule-based fallbacks   |
 | Auth + DB | Supabase (Postgres + Auth), free tier                        |
 | Hosting   | Vercel (Hobby, free tier)                                    |
 
@@ -95,13 +99,13 @@ and fill in. Nothing is required to run the app locally except
 `GEMINI_API_KEY` (and even that is optional: without it, every capability
 runs its rule-based fallback instead of calling Gemini).
 
-| Variable                                                                              | Required | Purpose                                                                                                                           |
+| Variable | Required | Purpose |
 | ------------------------------------------------------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `GEMINI_API_KEY`                                                                    | optional | Enables the real AI path; falls back to rule-based logic without it                                                               |
-| `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY`                                      | optional | Server-side persistence for uploaded documents — **required** for a serverless deployment to work correctly across requests |
-| `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY`                                    | optional | Enables real sign-in/sign-up in the browser                                                                                       |
-| `MAX_FILE_SIZE_MB`                                                                  | optional | Upload size limit — see the Vercel-specific note in [DEPLOYMENT.md](./DEPLOYMENT.md)                                               |
-| `SINGLE_TENANT_MODE`, `AI_ENABLED`, `DEFAULT_TENANT_ID`, `DEFAULT_TENANT_KEY` | optional | Tenancy/demo defaults, see `src/config/index.ts`                                                                                 |
+| `GEMINI_API_KEY` | optional | Enables the real AI path; falls back to rule-based logic without it |
+| `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` | optional | Server-side persistence for uploaded documents — **required** for a serverless deployment to work correctly across requests |
+| `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` | optional | Enables real sign-in/sign-up in the browser |
+| `MAX_FILE_SIZE_MB` | optional | Upload size limit — see the Vercel-specific note in [DEPLOYMENT.md](./DEPLOYMENT.md) |
+| `SINGLE_TENANT_MODE`, `AI_ENABLED`, `DEFAULT_TENANT_ID`, `DEFAULT_TENANT_KEY` | optional | Tenancy/demo defaults, see `src/config/index.ts` |
 
 ## Deploying your own copy
 
